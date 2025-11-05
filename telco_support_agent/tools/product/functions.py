@@ -190,18 +190,22 @@ def register_customer_devices_info(uc_config: UCConfig):
     except Exception as e:
         print(f"Error registering get_customer_devices: {str(e)}")
 
+def register_functions(uc_config: UCConfig):
+    logger.info("Register product UC function")
+    register_plans_info(uc_config)
+    register_devices_info(uc_config)
+    register_promos_info(uc_config)
+    register_customer_devices_info(uc_config)
+    logger.info("End product UC function")
 
 # Auto-registration with default UC config
 # Note: This should ideally be called explicitly with proper UC config
 if __name__ == "__main__":
     # Default UC config for auto-registration
     uc_config = UCConfig(
-        agent_catalog="telco_customer_support_prod",
+        agent_catalog="workspace",
         agent_schema="agent",
         data_schema="gold",
         model_name="telco_customer_support_agent",
     )
-    register_plans_info(uc_config)
-    register_devices_info(uc_config)
-    register_promos_info(uc_config)
-    register_customer_devices_info(uc_config)
+    register_functions(uc_config)

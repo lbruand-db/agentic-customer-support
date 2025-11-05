@@ -21,7 +21,7 @@ def convert_to_chat_completion_format(
             {
                 "role": "assistant",
                 "content": None
-                if llm_endpoint == "databricks-claude-3-7-sonnet"
+                if llm_endpoint == "databricks-gpt-oss-20b"
                 else "tool call",
                 "tool_calls": [
                     {

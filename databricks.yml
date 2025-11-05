@@ -5,7 +5,7 @@ variables:
   # Unity Catalog
   uc_catalog:
     description: Unity Catalog for all resources
-    default: telco_customer_support_${bundle.target}
+    default: workspace
   agent_schema:
     description: Schema for agent models and functions
     default: agent
@@ -30,7 +30,7 @@ variables:
     default: ${bundle.target}-telco-support-agent-vector-search
   scale_to_zero_enabled:
     description: Enable scale to zero
-    default: false
+    default: true
   workload_size:
     description: Endpoint workload size
     default: Small
@@ -55,9 +55,10 @@ targets:
   dev:
     mode: development
     default: true
-    workspace:
-      host: https://e2-demo-west.cloud.databricks.com
+    presets:
+      source_linked_deployment: false
     variables:
+      scale_to_zero_enabled: true
       disable_tools: ""
       
   staging:

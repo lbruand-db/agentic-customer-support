@@ -16,11 +16,11 @@
 dbutils.widgets.text("root_path", "")
 dbutils.widgets.text("env", "dev")
 dbutils.widgets.text("git_commit", "")
-dbutils.widgets.text("uc_catalog", "telco_customer_support_dev")
+dbutils.widgets.text("uc_catalog", "workspace")
 dbutils.widgets.text("agent_schema", "agent")
 dbutils.widgets.text("model_name", "telco_customer_support_agent")
 dbutils.widgets.text("endpoint_name", "dev-telco-customer-support-agent")
-dbutils.widgets.text("scale_to_zero_enabled", "false")
+dbutils.widgets.text("scale_to_zero_enabled", "true")
 dbutils.widgets.text("workload_size", "Small")
 
 # COMMAND ----------
@@ -54,6 +54,7 @@ print("Config loaded successfully!")
 # COMMAND ----------
 
 experiment = mlflow.set_experiment(f"/Shared/telco_support_agent/{config.env}/{config.env}_telco_support_agent")
+
 # COMMAND ----------
 
 print("Deployment configuration:")

@@ -3,7 +3,7 @@
 # MAGIC # Convert Delta Tables to Unity Catalog Volume
 # MAGIC
 # MAGIC Converts knowledge base and support ticket Delta tables to text files in Unity Catalog volumes.
-# MAGIC 
+# MAGIC
 # MAGIC Files will be organized as:
 # MAGIC - Knowledge Base: `/knowledge_base/{content_type}/{category}/{kb_id}.txt`
 # MAGIC - Support Tickets: `/support_tickets/{year}/{month}/{ticket_id}.txt`
@@ -36,7 +36,7 @@ if root_path:
 
 env = "prod"
 
-volume_catalog = f"telco_customer_support_{env}"
+volume_catalog = "workspace"
 volume_schema = "gold"
 volume_name = "tech_support"
 
@@ -44,7 +44,7 @@ volume_path = f"/Volumes/{volume_catalog}/{volume_schema}/{volume_name}"
 print(f"Target volume path: {volume_path}")
 
 # Source tables
-source_catalog = f"telco_customer_support_{env}"
+source_catalog = "workspace"
 kb_table = f"{source_catalog}.gold.knowledge_base"
 tickets_table = f"{source_catalog}.gold.support_tickets"
 
@@ -419,6 +419,7 @@ if tickets_sample_path.exists():
         except Exception as e:
             print(f"  Error reading file: {e}")
         print()
+
 # COMMAND ----------
 
 print("=== CONVERSION COMPLETE ===")

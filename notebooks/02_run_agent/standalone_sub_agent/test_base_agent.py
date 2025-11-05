@@ -21,6 +21,7 @@ print(f"Root path: {root_path}")
 if root_path:
     sys.path.append(root_path)
     print(f"Added {root_path} to Python path")
+
 # COMMAND ----------
 
 from mlflow.types.responses import ResponsesAgentRequest
@@ -129,7 +130,7 @@ class BasicTestAgent(BaseAgent):
 
 # COMMAND ----------
 
-LLM_ENDPOINT = "databricks-claude-3-7-sonnet"
+LLM_ENDPOINT = "databricks-gpt-oss-20b"
 
 basic_agent = BasicTestAgent(llm_endpoint=LLM_ENDPOINT)
 

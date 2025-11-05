@@ -16,7 +16,7 @@
 dbutils.widgets.text("root_path", "")
 dbutils.widgets.text("env", "dev")
 dbutils.widgets.text("git_commit", "")
-dbutils.widgets.text("uc_catalog", "telco_customer_support_dev")
+dbutils.widgets.text("uc_catalog", "workspace")
 dbutils.widgets.text("agent_schema", "agent")
 dbutils.widgets.text("data_schema", "gold")
 dbutils.widgets.text("model_name", "telco_customer_support_agent")
@@ -47,6 +47,7 @@ from telco_support_agent.ops.registry import register_agent_to_uc
 
 # MAGIC %md
 # MAGIC ## Config
+
 # COMMAND ----------
 
 config = WidgetConfigLoader(dbutils).load(LogRegisterConfig)

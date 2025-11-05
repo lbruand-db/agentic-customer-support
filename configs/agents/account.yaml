@@ -1,7 +1,7 @@
 name: account
 description: Customer account information agent.
 llm:
-  endpoint: dbdemos-openai-gpt4
+  endpoint: databricks-gpt-oss-20b
   params:
     temperature: 0.01
     max_tokens: 1024

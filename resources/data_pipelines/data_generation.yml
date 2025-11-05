@@ -1,0 +1,30 @@
+# Vector Indexes Setup
+# 
+# Databricks job to set up vector search indexes.
+# This job creates vector indexes for:
+# - Knowledge base (policies, FAQs, guides) 
+# - Support tickets (historical ticket data)
+
+resources:
+  jobs:
+    data_generation:
+      name: telco_data_generation_${bundle.target}
+      tasks:
+        - task_key: data_generation
+          notebook_task:
+            notebook_path: ../../notebooks/00_data_generation/data_generation.py
+            base_parameters:
+              # Environment-specific parameters
+              env: ${bundle.target}
+              uc_catalog: ${var.uc_catalog}
+              data_schema: ${var.data_schema}
+        - task_key: delta_to_volume
+          depends_on:
+            - task_key: data_generation
+          notebook_task:
+            notebook_path: ../../notebooks/00_data_generation/delta_to_volume.py
+            base_parameters:
+              # Environment-specific parameters
+              env: ${bundle.target}
+              uc_catalog: ${var.uc_catalog}
+              data_schema: ${var.data_schema}

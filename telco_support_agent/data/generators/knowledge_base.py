@@ -3,10 +3,8 @@
 This module contains the KnowledgeGenerator class for generating knowledge base
 articles and support tickets using foundation models.
 """
-
 from datetime import date, datetime, timedelta
 from typing import Any, Optional
-
 from databricks.sdk import WorkspaceClient
 from pyspark.sql import DataFrame, Row
 from pyspark.sql.types import (
@@ -332,7 +330,7 @@ class KnowledgeGenerator(BaseGenerator):
     def _generate_content_with_llm(self, prompt: str) -> Any:
         """Generate content using foundation model.
 
-        Uses Claude Sonnet model to generate high-quality, contextually
+        Uses GPT OSS model to generate high-quality, contextually
         appropriate content based on the provided prompt.
 
         Args:
@@ -343,7 +341,7 @@ class KnowledgeGenerator(BaseGenerator):
         """
         try:
             response = self.openai_client.chat.completions.create(
-                model="databricks-claude-3-7-sonnet",
+                model="databricks-gpt-oss-20b",
                 messages=[
                     {
                         "role": "system",
@@ -361,8 +359,17 @@ class KnowledgeGenerator(BaseGenerator):
                 temperature=0.7,
             )
 
+            generated_content = response.choices[0].message.content
+            if (len(generated_content) < 2):
+                if ("summary" in generated_content[0]):
+                    text_value = generated_content[0]['summary'][0]['text']
+                else:
+                    text_value = generated_content[0]['text']
+            else:
+                text_value = generated_content[1]['text']
+                
             # extract content from response
-            return response.choices[0].message.content
+            return text_value
         except Exception as e:
             print(f"Error generating content with LLM: {e}")
             return f"Information about {prompt.lower()}"
@@ -404,17 +411,17 @@ class KnowledgeGenerator(BaseGenerator):
             ):
                 prompt = self.kb_prompts[content_type][category].format(topic=topic)
 
-                generated_content = self._generate_content_with_llm(prompt)
+                text_value = self._generate_content_with_llm(prompt)
 
-                # extract title and content
-                lines = generated_content.strip().split("\n")
-                title = lines[0].strip("# ")
+                title = text_value.strip("# ")
+                
+                
                 if (
                     len(title) > 100
                 ):  # if first line is too long, create a summarized title
                     title = f"{topic.title()} Information"
 
-                content = generated_content
+                content = text_value
                 subcategory = topic.capitalize()
             else:
                 # fallback if no prompt template exists
@@ -547,6 +554,9 @@ class KnowledgeGenerator(BaseGenerator):
         loyalty_tier = getattr(customer, "loyalty_tier", "")
 
         # Basic customer info replacement
+        if isinstance(description, list):
+            print(description)
+        
         description = description.replace("[customer_segment]", segment)
         description = description.replace("[loyalty_tier]", loyalty_tier)
 

@@ -19,7 +19,7 @@
 # COMMAND ----------
 
 dbutils.widgets.text("env", "dev")
-dbutils.widgets.text("uc_catalog", "telco_customer_support_dev")
+dbutils.widgets.text("uc_catalog", "workspace")
 dbutils.widgets.text("data_schema", "gold")
 dbutils.widgets.text("vector_search_endpoint_name", "dev-telco-support-agent-vector-search")
 
@@ -37,6 +37,7 @@ if root_path:
     sys.path.append(root_path)
 
 env = dbutils.widgets.get("env")
+
 # COMMAND ----------
 
 from telco_support_agent.data.vector_search import VectorSearchManager

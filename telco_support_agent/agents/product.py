@@ -37,7 +37,7 @@ class ProductAgent(BaseAgent):
             "product",
             uc_config
             or UCConfig(
-                agent_catalog="telco_customer_support_prod", data_schema="gold"
+                agent_catalog="workspace", data_schema="gold"
             ),
         )
 

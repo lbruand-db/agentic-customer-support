@@ -17,9 +17,9 @@
 dbutils.widgets.text("experiment_name", "/Shared/telco_support_agent/dev/dev_telco_support_agent")
 dbutils.widgets.text("model_version", "")
 dbutils.widgets.text("env", "dev")
-dbutils.widgets.text("uc_catalog", "telco_customer_support_dev")
+dbutils.widgets.text("uc_catalog", "workspace")
 dbutils.widgets.text("agent_schema", "agent")
-dbutils.widgets.text("model_name", "telco_customer_support_agent")
+dbutils.widgets.text("model_name", "telco-customer-support-agent")
 
 # COMMAND ----------
 

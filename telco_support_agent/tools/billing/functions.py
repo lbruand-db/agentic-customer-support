@@ -141,6 +141,12 @@ def register_get_usage_info(uc_config: UCConfig):
         print(f"Error registering get_usage_info: {str(e)}")
 
 
+def register_functions(uc_config: UCConfig):
+    logger.info("Register billing UC function")
+    register_get_billing_info(uc_config)
+    register_get_usage_info(uc_config)
+    logger.info("End account UC function")
+
 # Auto-registration with default UC config
 # Note: This should ideally be called explicitly with proper UC config
 if __name__ == "__main__":
@@ -151,5 +157,4 @@ if __name__ == "__main__":
         data_schema="gold",
         model_name="telco_customer_support_agent",
     )
-    register_get_billing_info(uc_config)
-    register_get_usage_info(uc_config)
+    register_functions(uc_config)

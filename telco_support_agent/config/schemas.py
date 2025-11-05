@@ -18,11 +18,11 @@ class UCConfig(BaseModel):
     """Unity Catalog configuration with separation of data reading vs agent artifacts."""
 
     # For reading data (customer info, billing, etc.) - always prod
-    data_catalog: str = "telco_customer_support_prod"
+    data_catalog: str = "workspace"
     data_schema: str = "gold"
 
     # For agent artifacts (functions, models) - environment specific
-    agent_catalog: str = "telco_customer_support_prod"  # Default to prod for testing
+    agent_catalog: str = "workspace"  # Default to prod for testing
     agent_schema: str = "agent"
     model_name: str = "telco_customer_support_agent"
 

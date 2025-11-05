@@ -19,7 +19,7 @@ _logger = logging.getLogger(__name__)
 def run_llm(
     message: str,
     system_prompt: Optional[str] = None,
-    model: str = "dbdemos-openai-gpt4",
+    model: str = "databricks-gpt-oss-20b",
 ) -> str:
     """Run LLM query using Databricks deployment client.
 
@@ -77,7 +77,7 @@ If the query spans multiple domains or involves complex interconnected issues ac
 def topic_classification(
     content: str,
     topic_categories: list[dict],
-    model: str = "dbdemos-openai-gpt4",
+    model: str = "databricks-gpt-oss-20b",
 ) -> dict[str, str]:
     """Classify content into topics using an LLM.
 

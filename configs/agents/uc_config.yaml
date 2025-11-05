@@ -1,0 +1,5 @@
+agent_catalog: workspace
+agent_schema: agent
+data_catalog: workspace
+data_schema: gold
+model_name: telco_customer_support_agent

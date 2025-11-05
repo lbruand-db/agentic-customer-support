@@ -27,7 +27,7 @@ def deploy_agent(
     model_version: Union[str, int, ModelVersion],
     deployment_name: Optional[str] = None,
     tags: Optional[dict[str, str]] = None,
-    scale_to_zero_enabled: bool = False,
+    scale_to_zero_enabled: bool = True,
     environment_vars: Optional[dict[str, str]] = None,
     workload_size: str = "Small",
     wait_for_ready: bool = True,

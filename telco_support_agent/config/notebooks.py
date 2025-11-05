@@ -101,7 +101,7 @@ class DeployAgentConfig(BaseModel):
 
     # Model Serving
     endpoint_name: str
-    scale_to_zero_enabled: bool = False
+    scale_to_zero_enabled: bool = True
     workload_size: str = "Small"
     wait_for_ready: bool = True
 

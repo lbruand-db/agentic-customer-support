@@ -1,0 +1,18 @@
+resources:
+  jobs:
+    RUN_ME_DEPLOY_ALL:
+      name: RUN_ME_DEPLOY_ALL_${bundle.target}
+      tasks:
+        - task_key: data_generation
+          run_job_task:
+            job_id: ${resources.jobs.data_generation.id}
+        - task_key: create_vector_indexes
+          depends_on:
+            - task_key: data_generation
+          run_job_task:
+            job_id: ${resources.jobs.create_vector_indexes.id}
+        - task_key: log_register_deploy_agent
+          depends_on:
+            - task_key: create_vector_indexes
+          run_job_task:
+            job_id: ${resources.jobs.log_register_deploy_agent.id}

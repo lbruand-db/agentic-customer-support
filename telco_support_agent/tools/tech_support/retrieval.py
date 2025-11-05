@@ -42,7 +42,7 @@ class KnowledgeBaseRetriever:
         if not uc_config:
             # Default UC config if not provided
             uc_config = UCConfig(
-                agent_catalog="telco_customer_support_prod",
+                agent_catalog="workspace",
                 agent_schema="agent",
                 data_schema="gold",
                 model_name="telco_customer_support_agent",
@@ -198,7 +198,7 @@ class SupportTicketsRetriever:
         if not uc_config:
             # Default UC config if not provided
             uc_config = UCConfig(
-                agent_catalog="telco_customer_support_prod",
+                agent_catalog="workspace",
                 agent_schema="agent",
                 data_schema="gold",
                 model_name="telco_customer_support_agent",
