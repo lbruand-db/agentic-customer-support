@@ -303,7 +303,7 @@ class VectorSearchManager:
 
                 logger.info(f"   Current state: {state}")
 
-                if state == "ONLINE":
+                if "ONLINE" in state:
                     logger.info(f"{index_name} is ONLINE and ready!")
                     break
                 elif state in ["FAILED", "CANCELLED"]:
