@@ -50,9 +50,3 @@ tech_support_volume = workspace_client.volumes.create(
 # COMMAND ----------
 
 workspace_client.workspace.mkdirs("/Workspace/Shared/telco_support_agent/dev")
-
-# COMMAND ----------
-
-workspace_client.workspace.deploy_bundle(
-    bundle_path="."
-)
